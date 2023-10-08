@@ -4,7 +4,6 @@ public class Game {
 
     private Player player;
     private String playerName;
-    private int currentValue;
 
     //Constants for card bounds
     private static final int UPPER_BOUND = 11;
@@ -13,7 +12,6 @@ public class Game {
     public Game(){
         introduction();
         playerName = player.getName();
-        currentValue = player.getCurrentValue();
     }
     public int drawCard() {
         Random rand = new Random();
@@ -29,38 +27,42 @@ public class Game {
          System.out.println(player.toString());
     }
 
-    public void conditions(int CurrentValue) {
-        if (CurrentValue > BlackJack) {
-            System.out.println(playerName + " busted! Game over.");
-        } else if (CurrentValue == BlackJack) {
-            System.out.println(playerName + "has 21!! ");
-            System.out.println(playerName + "Wins!");
-        }else {
-            playGame();
-        }
-    }
 
     public void playGame() {
         Scanner sc = new Scanner(System.in);
         System.out.println(playerName + ": do you want to DRAW another card, or HOLD?");
-        String opt = sc.nextLine();
+        String Option = sc.nextLine();
+        output(Option);
+    }
 
-        switch (opt) {
-            case "DRAW":
+    public void output(String Option){
+        switch (Option) {
+            case "DRAW" -> {
                 int drawnValue = drawCard();
                 player.updateCurrentValue(drawnValue);
                 System.out.println(playerName + " drew a card with a value of " + drawnValue);
                 System.out.println(player.toString());
-                conditions(player.getCurrentValue());
-                break;
-            case "HOLD":
-                System.out.println("Its a draw :/");
-                break;
-            default:
+                if (player.getCurrentValue() > BlackJack) {
+                    System.out.println(playerName + " busted! Game over.");
+                } else if (player.getCurrentValue() == BlackJack) {
+                    System.out.println(playerName + "has 21!! ");
+                    System.out.println(playerName + "Wins!");
+                } else {
+                    playGame();
+                }
+            }
+            case "HOLD" -> System.out.println("Its a draw :/");
+            default -> {
                 System.out.println("Invalid option. Please enter DRAW or HOLD.");
                 playGame();
-                break;
+            }
         }
     }
+
+
+
+
+
+
 }
 
