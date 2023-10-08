@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Game {
 
     private Player player;
-    private String playerName;
+    private final String playerName;
 
     //Constants for card bounds
     private static final int UPPER_BOUND = 11;
