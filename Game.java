@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 public class Game {
@@ -51,18 +52,26 @@ public class Game {
                     playGame();
                 }
             }
-            case "HOLD" -> System.out.println("Its a draw :/");
+            case "HOLD" ->{
+                System.out.println("Its a draw :/");
+            }
             default -> {
                 System.out.println("Invalid option. Please enter DRAW or HOLD.");
                 playGame();
             }
         }
     }
+/*
+    public void recordEvent(String event) {
+        gameHistory.add(event);
+    }
 
-
-
-
-
-
+    public void displayHistory() {
+        System.out.println("Game History:");
+        for (String event : gameHistory) {
+            System.out.println(event);
+        }
+    }
+*/
 }
 
