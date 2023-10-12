@@ -1,7 +1,6 @@
-import java.util.Scanner;
-import java.util.Random;
+
 public class Player {
-    private String name;
+    private final String name;
     private int currentDrawnValue;
     private int CurrentValue;
 
@@ -9,9 +8,6 @@ public class Player {
         this.name = name;
     }
 
-    public void introduction(){
-        System.out.println(toString());
-    }
 
     @Override
     public String toString(){

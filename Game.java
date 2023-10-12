@@ -75,15 +75,10 @@ public class Game {
             }
         }
     }
-    // Getter method for history
-    public ArrayList<String> getHistory() {
-        return history;
-    }
 
-    // Setter method for history
-    public void setHistory(ArrayList<String> history) {
-        this.history = history;
-    }
+
+
+
     public void showHistory() {
         System.out.println("Game History:");
         for (String entry : history) {
