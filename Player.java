@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 public class Player {
     private String name;
+    private int currentDrawnValue;
     private int CurrentValue;
 
     public Player(String name){
@@ -14,7 +15,7 @@ public class Player {
 
     @Override
     public String toString(){
-        return name + " currently has " + CurrentValue;
+        return name + " Drew " + currentDrawnValue + " and currently has " + CurrentValue;
     }
 
     public String getName(){
@@ -30,5 +31,12 @@ public class Player {
 
     public void updateCurrentValue(int addValue){
         CurrentValue += addValue;
+    }
+
+    public void setCurrentDrawnValue(int curr){
+        currentDrawnValue = curr;
+    }
+    public int getCurrentDrawnValue(){
+        return currentDrawnValue ;
     }
 }

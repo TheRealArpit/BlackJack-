@@ -5,6 +5,8 @@ public class Game {
 
     private Player player;
     private final String playerName;
+    private int DrawnValue;
+    private ArrayList<String> history = new ArrayList<>(); // ArrayList to store history
 
     //Constants for card bounds
     private static final int UPPER_BOUND = 11;
@@ -23,9 +25,15 @@ public class Game {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Player name:");
          String playerName = sc.nextLine();
+
          this.player = new Player(playerName);
-         this.player.setCurrentValue(drawCard());
+         player.setCurrentDrawnValue(drawCard());
+         DrawnValue = player.getCurrentDrawnValue();
+         this.player.setCurrentValue(DrawnValue);
+
          System.out.println(player.toString());
+         history.add(toString());
+
     }
 
 
@@ -39,39 +47,49 @@ public class Game {
     public void output(String Option){
         switch (Option) {
             case "DRAW" -> {
-                int drawnValue = drawCard();
-                player.updateCurrentValue(drawnValue);
-                System.out.println(playerName + " drew a card with a value of " + drawnValue);
+                DrawnValue = drawCard();
+                player.setCurrentDrawnValue(DrawnValue);
+                player.updateCurrentValue(DrawnValue);
                 System.out.println(player.toString());
+                history.add(player.toString());
+
                 if (player.getCurrentValue() > BlackJack) {
+                    history.add(playerName + " busted! Game Over");
                     System.out.println(playerName + " busted! Game over.");
                 } else if (player.getCurrentValue() == BlackJack) {
-                    System.out.println(playerName + "has 21!! ");
-                    System.out.println(playerName + "Wins!");
+                    //System.out.println(playerName + "has 21!! ");
+                    history.add(playerName + "Won! Game Over");
+                    System.out.println(playerName + " Wins!");
                 } else {
                     playGame();
                 }
             }
             case "HOLD" ->{
+                history.add(playerName + " Drew");
                 System.out.println("Its a draw :/");
             }
             default -> {
+                history.add("Invalid option. Please enter DRAW or HOLD.");
                 System.out.println("Invalid option. Please enter DRAW or HOLD.");
                 playGame();
             }
         }
     }
-/*
-    public void recordEvent(String event) {
-        gameHistory.add(event);
+    // Getter method for history
+    public ArrayList<String> getHistory() {
+        return history;
     }
 
-    public void displayHistory() {
+    // Setter method for history
+    public void setHistory(ArrayList<String> history) {
+        this.history = history;
+    }
+    public void showHistory() {
         System.out.println("Game History:");
-        for (String event : gameHistory) {
-            System.out.println(event);
+        for (String entry : history) {
+            System.out.println(entry);
         }
     }
-*/
+
 }
 
